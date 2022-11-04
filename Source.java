@@ -1,4 +1,6 @@
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 public class Source extends Observable {
 	private Double x;
 	   public void GenerateData(){
@@ -8,6 +10,7 @@ public class Source extends Observable {
 		      while(true){
 		      x=rand.nextDouble(upperbound);
 		      Notify();
+		      TimeUnit.SECONDS.sleep(20);
 		      }
 	   } 
        public Double getpoint() {

@@ -3,8 +3,9 @@ import java.util.*;
 public class Evaluator {
 
 	protected Evaluator evaluator;
-	private List<Integer> numberList=new ArrayList<Integer>();
-	double sum=0.0;
+	//private List<Double> numberList=new ArrayList<Integer>();
+	Double sum=0.0;
+	
 	private Evaluator()
 	{
 		
@@ -17,7 +18,7 @@ public class Evaluator {
 	}
 	public double ComputeAvg(int a)
 	{
-		numberList.add(a);
+		//numberList.add(a);
 		sum+=a;
 		return sum/numberList.size();
 	}
