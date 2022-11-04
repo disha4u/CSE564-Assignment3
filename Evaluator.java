@@ -5,7 +5,7 @@ public class Evaluator {
 	protected Evaluator evaluator;
 	//private List<Double> numberList=new ArrayList<Integer>();
 	Double sum=0.0;
-	
+	int count=1;
 	private Evaluator()
 	{
 		
@@ -20,6 +20,7 @@ public class Evaluator {
 	{
 		//numberList.add(a);
 		sum+=a;
-		return sum/numberList.size();
+		count++;
+		return sum/count;
 	}
 }
