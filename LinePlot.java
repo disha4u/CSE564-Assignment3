@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.util.ArrayList;
 public class LinePlot extends Drawable{
@@ -25,9 +26,9 @@ public class LinePlot extends Drawable{
 		double width=getSize().width;
 		Path2D polyline = new Path2D.Double();
 		
-//		System.out.println("  Xcoor"+xcoor.size());
+		System.out.println(" Line Plot  Xcoor "+xcoor.size());
 		if(xcoor.size()==10)
-		{
+			{
 			polyline.moveTo(xcoor.get(0),ycoor.get(0));
 			for(int i=1;i<xcoor.size();i++)
 			{ 
@@ -36,13 +37,21 @@ public class LinePlot extends Drawable{
 			
 			}
 			graphics.draw(polyline);
+			System.out.println(" Drwa avg line "+avg);
+			Line2D line2d=new Line2D.Double(0,avg , maxXcoor,avg);
+			graphics.setColor(Color.RED);
+//	        g.setStroke(thick);
+
+	        graphics.draw(line2d);
+			
 			this.repaint();
 		}
 //		System.out.println("Done with painting");
 	}
-	public void setValues(ArrayList<Double> x,ArrayList<Double> y,double maxX,double maxY)
+	public void setValues(ArrayList<Double> x,ArrayList<Double> y,double maxX,double maxY,double avg)
 	{
 //		super.setValues(x,y,maxX,maxY);
+		this.avg=avg;
 		xcoor=x;
 		ycoor=y;
 		maxXcoor=maxX;

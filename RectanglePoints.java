@@ -34,9 +34,9 @@ public class RectanglePoints extends DrawableDecorator{
 		}
 	}
 	@Override
-	public void setValues(ArrayList<Double> x,ArrayList<Double> y,double maxX,double maxY)
+	public void setValues(ArrayList<Double> x,ArrayList<Double> y,double maxX,double maxY,double avg)
 	{
-		super.setValues(x,y,maxX,maxY);
+		super.setValues(x,y,maxX,maxY,avg);
 		xcoor=x;
 		ycoor=y;
 		maxXcoor=maxX;

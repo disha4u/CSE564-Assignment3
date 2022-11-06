@@ -21,9 +21,9 @@ public abstract class DrawableDecorator extends Drawable {
 ////    	 System.out.println("Done with Paint Super Component");
 //    	}
     
-	public void setValues(ArrayList<Double> xcoor,ArrayList<Double> ycoor,double maxXcoor,double maxYcoor)
+	public void setValues(ArrayList<Double> xcoor,ArrayList<Double> ycoor,double maxXcoor,double maxYcoor,double avg)
 	{
-		this.drawable.setValues(xcoor,ycoor,maxXcoor,maxYcoor);
+		this.drawable.setValues(xcoor,ycoor,maxXcoor,maxYcoor,avg);
 	}
 //    @Override
 	public void draw(Graphics g)
