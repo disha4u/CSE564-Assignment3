@@ -4,20 +4,23 @@ import java.awt.geom.Path2D;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import java.util.*;
-
+import javax.swing.JPanel;
 import java.util.concurrent.TimeUnit;
- 
+ import java.awt.geom.Rectangle2D;
 public class Curve extends JFrame {
 	
 	
 
     public static void main(String[] args) {
         final JFrame f = new JFrame("My curve");
-        f.setSize(200, 200);
+        f.setSize(1000, 1000);
 			
-        f.add(new JComponent() {
+		//JPanel p=new Panel();
+        f.add(new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				System.out.println("Paint Component");
                 Graphics2D graphics = (Graphics2D) g.create();// your graphics object
 				
 				Queue<Double> q=new LinkedList<Double>();
@@ -32,30 +35,53 @@ public class Curve extends JFrame {
 				
 				for(double x: q)
 					System.out.println(x);
-				if(q.size()==10)
+				int px=0;
+				Path2D polyline = new Path2D.Double();
+				if (q.size()==10 && px<30)
                 {
-					System.out.println("In qhule");
-			//	double[] x = {50, 100, 300, 500}; // x coordinates of polyline
-                 // y coordinates of polyline
-				 int cx=0;
-				  cx++;
-                Path2D polyline = new Path2D.Double();
-                //polyline.moveTo(x[0], y[0]);
-				 polyline.moveTo(q.remove(), y[0]);
-				
+				System.out.println("In ");
+	            
+				polyline.moveTo(q.remove(), y[0]);
+				int cx=1;
                 for (double x:q) {
-					System.out.println(x+" "+(y[cx%10]/10)*200);
-                    polyline.lineTo(x*2, (y[cx%10]/10)*200);
+					double height=getSize().height;
+					double width=getSize().width;
+					double ycoor=(x*(getSize().height-10))/100;
+					double xcoor=(y[cx%10]*(getSize().width-10))/10;
+					graphics.fill(new Rectangle2D.Double(xcoor, ycoor, 10, 10));
+					graphics.draw(new Rectangle2D.Double(xcoor , ycoor, 8,height-ycoor));
+					System.out.println(xcoor+" "+(ycoor));
+                    polyline.lineTo(xcoor,ycoor);
 					count++;
 					cx++;
+
                 }
-                graphics.draw(polyline);
-                graphics.dispose();
-			//	q.remove();
-				//q.add(randomGenerator());
+				graphics.draw(polyline);
+				graphics.dispose();
+				try
+				{
+					Thread.sleep(500);
 				}
+				catch(Exception e)
+				{
+				}
+               
+				System.out.println(q.size());
+				q.add(randomGenerator());
+				System.out.println("Added Random Generator "+q.size());
+				px++;
+					this.repaint();
+			
+				}
+				
+				System.out.println("Done with Plotting");
+				graphics.dispose();
+			
             }
+			
         });
+		//f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//f.setUndecorated(true);
         f.setVisible(true);
 
     }
