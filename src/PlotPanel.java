@@ -5,7 +5,7 @@ import java.util.Collections;
 import javax.swing.*;
 
 public class PlotPanel extends JPanel implements Observer {
-	ArrayList<Double> q=new ArrayList<Double>(Collections.nCopies(10, 0.0))
+	ArrayList<Double> data=new ArrayList<Double>(Collections.nCopies(10, 0.0));
 	Double ycoor;
 	@Override
 	public void Update(Observable o) {

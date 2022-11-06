@@ -1,7 +1,7 @@
 import java.util.*;
 public abstract class Observable  {
 	private List<Observer> observers=new ArrayList<Observer>();
-	public void Notfiy()
+	public void Notify()
 	{
 		for(Observer o: observers)
 		{
