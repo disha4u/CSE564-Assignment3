@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.awt.*;
 
 import javax.swing.*;
 
@@ -13,5 +14,16 @@ public class PlotPanel extends JPanel implements Observer {
 		this.data=((Source)o).getData();
 		this.ycoor=((Source)o).getY();
 	}
-
+    public void drawGraphs() {
+    	Drawable line=new LinePlot();
+    	Drawable square=new RectanglePoints();
+    	Drawable bar=new BarPlot();
+    	add(bar);
+    	add(square);
+    	add(line);
+    	JButton btn=new JButton();
+    	add(btn);
+    	setLayout(new GridLayout());
+    	
+    }
 }
