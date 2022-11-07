@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Evaluator implements Observer {
 
-	protected Evaluator evaluator;
+	protected static Evaluator evaluator;
 	//private List<Double> numberList=new ArrayList<Integer>();
 	static double sum=0;
 	static int count=0;

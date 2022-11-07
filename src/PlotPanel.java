@@ -13,7 +13,7 @@ public class PlotPanel extends JPanel implements Observer {
 	ArrayList<Double> ycoor=new ArrayList<Double>();
 	double height;
 	double width;
-	Evaluator e= 
+	Evaluator e= Evaluator.getInstance();
 	
 	@Override
 	public void Update(Observable o) {
@@ -23,7 +23,7 @@ public class PlotPanel extends JPanel implements Observer {
 			coordinateCalc();
 			for(Drawable k:d )
 			{
-				k.setValues(xcoor,ycoor,width,height,avg);
+				k.setValues(xcoor,ycoor,width,height,e.avg);
 			}
 		}
 	}

@@ -6,19 +6,10 @@ import java.util.*;
 import javax.swing.*;
 public class Main extends JFrame implements ActionListener {
 
-	ArrayList<Double> xcoor=new ArrayList<Double>();
-	ArrayList<Double> ycoor=new ArrayList<Double>();
-	ArrayList<Drawable> d;
-	Queue<Double> q;
-	double avg=0;
-	long count=0;
+	/**
 	Main()
 	{
-		ArrayList<Drawable> d=new ArrayList<Drawable>();
-		d.add(new BarPlot(new RectanglePoints(new LinePlot())));
-		d.add(new RectanglePoints(new LinePlot()));
-		d.add(new LinePlot());
-		System.out.println("Frame created");
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600,600);
         double height;
@@ -126,43 +117,19 @@ public class Main extends JFrame implements ActionListener {
 			    }
 
 	}
-	public  void coordinateCalc(Queue<Double> q)
-	{
-		xcoor= new ArrayList<Double>();
-		ycoor=new ArrayList<Double>();
-		double y[]=new double[q.size()];
-		for(int i=1;i<q.size();i++)
-			y[i]=i;
-		int cx=0;
-		//setPreferredSize(new Dimension(640, 480));
-		double height=getSize().height/4;
-		double width=getSize().width/4;
-		System.out.println("height and width"+height+" "+width);
-		for(Double x:q)
-		{
-			
-			ycoor.add((x*(height))/100);
-		    xcoor.add((y[cx%10]*(width))/2);
-
-			cx++;
-		}
-		System.out.println("Done with adding");
-	}
-	private   double randomGenerator() {
-		Random random=new Random();
-		double randomVal=(100) * random.nextDouble();
-		try{
-			Thread.sleep(100);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Exception");
-		}
-		return randomVal;
-  }
+	
+	**/
+	
 	public static void main(String[] args)
 	{
-		Main m=new Main();
+		Source ds=new Source();
+		PlotPanel pp =new PlotPanel();
+		ds.addObservers(pp);
+		Evaluator e=Evaluator.getInstance();
+		ds.addObservers(e);
+		
+		
+		
 		
 	}
 	@Override
