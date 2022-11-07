@@ -14,7 +14,7 @@ public class LinePlot extends Drawable{
 	@Override
     protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		this.setBackground(new Color(10,200,200));
+		this.setBackground(new Color(153,153,153));
 		System.out.println("paint compon");
 		this.draw(g);
 	}
@@ -37,13 +37,13 @@ public class LinePlot extends Drawable{
 			
 			}
 			graphics.draw(polyline);
-			System.out.println(" Drwa avg line "+avg);
+			System.out.println(" Drwa avg line "+avg+" MACOOR "+maxXcoor);
 			Line2D line2d=new Line2D.Double(0,avg , maxXcoor,avg);
 			graphics.setColor(Color.RED);
 //	        g.setStroke(thick);
 
 	        graphics.draw(line2d);
-	        		
+			
 			this.repaint();
 		}
 //		System.out.println("Done with painting");

@@ -9,7 +9,6 @@ public abstract class DrawableDecorator extends Drawable {
 	DrawableDecorator(Drawable drawable)
 	{
 		this.drawable=drawable;
-		this.setBackground(new Color(200,200,100));
 		System.out.println("Drawble "+this.drawable.toString());
 	}
 //    @Override

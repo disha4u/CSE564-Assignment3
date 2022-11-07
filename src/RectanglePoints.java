@@ -9,7 +9,7 @@ public class RectanglePoints extends DrawableDecorator{
 	RectanglePoints(Drawable drawable)
 	{
 		super(drawable);
-		this.setBackground(new Color(200,100,200));
+		this.setBackground(new Color(204,204,204));
 	}
 	@Override
     protected void paintComponent(Graphics g) {

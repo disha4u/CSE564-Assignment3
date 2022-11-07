@@ -1,4 +1,6 @@
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,100 +8,23 @@ import java.util.*;
 import javax.swing.*;
 public class Main extends JFrame implements ActionListener {
 
-	ArrayList<Double> xcoor=new ArrayList<Double>();
-	ArrayList<Double> ycoor=new ArrayList<Double>();
-	ArrayList<Drawable> d;
-	Queue<Double> q;
-	double avg=0;
-	long count=0;
-	Main()
+	
+	Main(JPanel pp, Source ds)
 	{
-		ArrayList<Drawable> d=new ArrayList<Drawable>();
-		d.add(new BarPlot(new RectanglePoints(new LinePlot())));
-		d.add(new RectanglePoints(new LinePlot()));
-		d.add(new LinePlot());
-		JPanel jp=new JPanel();
-		System.out.println("Frame created");
+		setSize(600,600);
+//	    setLayout(new GridLayout(3,1));
+//		pp.setSize(new Dimension(getSize().height,getSize().width));
+		setLayout(new BorderLayout());
+		add(pp, BorderLayout.CENTER);
+	
+//		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600,600);
-        double height;
-    	double width;
-        setLayout(new GridLayout(4,1));
-        System.out.println("Frame Set");
-        Queue<Double> q=new LinkedList<Double>();
-        while(q.size()<10) {
-        	double val=randomGenerator();
-        	q.add(val);
-        	if(q.size()==0)
-        		avg=val;
-        	else
-        	avg=(avg*(q.size()-1)/q.size())+val/q.size();
-        }
-        System.out.println("RandomGen");
-//    	double height=getSize().height;
-//		double width=getSize().width;
-        coordinateCalc(q);
-        System.out.println(xcoor);
-        System.out.println(ycoor);
-        System.out.println(ycoor);
-        System.out.println("avg "+avg);  
-        for(Drawable k :d)
-        { height=getSize().height;
-		 width=getSize().width;
-        	k.setValues(xcoor,ycoor,width,height,avg);
-        }
-        System.out.println("Coordinate Cal done");
-        
-  		for(Drawable k:d )
-		{
-			jp.add(k);
-		}
-  		add(jp);
-  		JPanel addButton=new JPanel();
-  		add(addButton);
-		JButton b=new JButton("Click for Graphs");
-		add(b); 
-		b.addActionListener(new ActionListener() {
-		         public void actionPerformed(ActionEvent e) {
-		          //  statusLabel.setText("Ok Button is clicked here");
-		   
-		     		while(q.size()==10)
-				    {  coordinateCalc(q);
-				    	
-						for(Drawable k :d)
-				        { 
-							System.out.println(" before setting");
-							//add(k);
-					    	 double height=getSize().height;
-							 double width=getSize().width;
-				        	k.setValues(xcoor,ycoor,width,height,avg);
-				        
-//				        	this.repaint();
-				        }
-				    q.remove();
-				    double val=randomGenerator();
-				    q.add(val);
-				    avg=(avg*(q.size()-1)/q.size())+val/q.size();
-				    System.out.println("avg "+avg);
-				    try
-				    {Thread.sleep(100);
-				    }
-				    catch(Exception e1)
-				    {
-				    	System.out.println("");
-				    }
-				    
-				    
-				    }
-		         }
-		      });
-//		   add(b);
-		addButton.add(b);
-		System.out.println("Done with  adding");
-		 setVisible(true);
-		
-        
+		pack();
+		add(pp);
+        setVisible(true);
+        ds.GenerateData();
 	}
+	/**
 	public void plotGraphs()
 	{
 //		System.out.println()
@@ -147,43 +72,19 @@ public class Main extends JFrame implements ActionListener {
 			    }
 
 	}
-	public  void coordinateCalc(Queue<Double> q)
-	{
-		xcoor= new ArrayList<Double>();
-		ycoor=new ArrayList<Double>();
-		double y[]=new double[q.size()];
-		for(int i=1;i<q.size();i++)
-			y[i]=i;
-		int cx=0;
-		//setPreferredSize(new Dimension(640, 480));
-		double height=getSize().height/4;
-		double width=getSize().width/4;
-		System.out.println("height and width"+height+" "+width);
-		for(Double x:q)
-		{
-			
-			ycoor.add((x*(height))/100);
-		    xcoor.add((y[cx%10]*(width))/2);
-
-			cx++;
-		}
-		System.out.println("Done with adding");
-	}
-	private   double randomGenerator() {
-		Random random=new Random();
-		double randomVal=(100) * random.nextDouble();
-		try{
-			Thread.sleep(100);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Exception");
-		}
-		return randomVal;
-  }
+	
+	**/
+	
 	public static void main(String[] args)
 	{
-		Main m=new Main();
+		Source ds=new Source();
+		PlotPanel pp =new PlotPanel();
+		ds.addObservers(pp);
+		Evaluator e=Evaluator.getInstance();
+		ds.addObservers(e);
+		
+		Main m=new Main(pp,ds);
+		
 		
 	}
 	@Override
