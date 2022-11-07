@@ -19,5 +19,4 @@ public abstract class Drawable extends JPanel
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         }
-    
 }

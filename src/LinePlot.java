@@ -37,13 +37,13 @@ public class LinePlot extends Drawable{
 			
 			}
 			graphics.draw(polyline);
-			System.out.println(" Drwa avg line "+avg+" MACOOR "+maxXcoor);
+			System.out.println(" Drwa avg line "+avg);
 			Line2D line2d=new Line2D.Double(0,avg , maxXcoor,avg);
 			graphics.setColor(Color.RED);
 //	        g.setStroke(thick);
 
 	        graphics.draw(line2d);
-			
+	        		
 			this.repaint();
 		}
 //		System.out.println("Done with painting");
