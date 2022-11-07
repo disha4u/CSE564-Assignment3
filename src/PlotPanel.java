@@ -16,8 +16,8 @@ public class PlotPanel extends JPanel implements Observer {
 	}
     public void drawGraphs() {
     	Drawable line=new LinePlot();
-    	Drawable square=new RectanglePoints();
-    	Drawable bar=new BarPlot();
+    	DrawableDecorator square=new RectanglePoints(new LinePlot());
+    	DrawableDecorator bar=new BarPlot(new LinePlot());
     	add(bar);
     	add(square);
     	add(line);
