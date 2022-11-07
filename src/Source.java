@@ -3,12 +3,20 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+/**
+*@author Ramachandra Sai
+*@author Disha Agarawal
+*@author Harshit 
+*/
 public class Source extends Observable {
 		
 	
 	private ArrayList<Double> q=new ArrayList<Double>(Collections.nCopies(10, 0.0));
 	private double cur_value;
 	
+	/**
+	* generates random data points in an infinite cycle
+	*/
 	public void GenerateData(){
 		System.out.println("gen data init");
 	    Random rand = new Random(); //instance of random class
