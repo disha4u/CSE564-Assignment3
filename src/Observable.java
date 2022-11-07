@@ -9,7 +9,7 @@ public abstract class Observable  {
 	private List<Observer> observers=new ArrayList<Observer>();
 	
 	/**
-	* Notifies observers the current state
+	* Notifies Observers the current state
 	*/
 	public void Notify()
 	{
@@ -21,8 +21,8 @@ public abstract class Observable  {
 	}
 	
 	/**
-	* adds observer to the list of observers
-	* @param observer object
+	* adds Observer to the list of observers
+	* @param Observer object
 	*/
 	public void addObservers(Observer o)
 	{
@@ -30,8 +30,8 @@ public abstract class Observable  {
 	}
 	
 	/**
-	* removes observer from the list of observers
-	* @param observer object
+	* removes Observer from the list of observers
+	* @param Observer object
 	*/
 	public void removeObservers(Observer o)
 	{

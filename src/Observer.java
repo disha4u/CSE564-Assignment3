@@ -7,6 +7,7 @@ public interface Observer {
 	
 	/**
 	* updates the status to be same as observable state
+	* @param Observable object
 	*/
 	public void Update(Observable o);
 }
