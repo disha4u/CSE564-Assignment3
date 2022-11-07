@@ -1,10 +1,14 @@
-
 import java.util.*;
 import java.util.Collections;
 import java.util.Queue;
 import java.awt.*;
-
 import javax.swing.*;
+
+/**
+*@author Ramachandra Sai
+*@author Disha Agarawal
+*@author Harshit 
+*/
 
 public class PlotPanel extends JPanel implements Observer {
 	ArrayList<Drawable> d=new ArrayList<Drawable>();
@@ -14,6 +18,7 @@ public class PlotPanel extends JPanel implements Observer {
 	double height;
 	double width;
 	Evaluator e= Evaluator.getInstance();
+	
 	PlotPanel()
 	{
 		setPreferredSize(new Dimension(500,500));
@@ -23,6 +28,10 @@ public class PlotPanel extends JPanel implements Observer {
 	
 	}
 	
+	/**
+	* updates the queue of random generated data points
+	* @param instance of Observable- Source 
+	*/
 	public void Update(Observable o) {
 		// TODO Auto-generated method stub
 		this.q=((Source)o).getData();
@@ -37,7 +46,9 @@ public class PlotPanel extends JPanel implements Observer {
 			}
 		}
 	}
+	
 //    public void drawGraphs() {
+	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		System.out.println("paint cim");
@@ -65,6 +76,10 @@ public class PlotPanel extends JPanel implements Observer {
     	setLayout(new GridLayout(3,1));
     	
     }
+	
+	/**
+	* scales data points
+	*/
     public  void coordinateCalc()
 	{
 		xcoor= new ArrayList<Double>();
