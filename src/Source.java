@@ -40,9 +40,16 @@ public class Source extends Observable {
 	     }
 	 } 
 	
+	/**
+	* @return queue of generated random data points
+	*/
 	public ArrayList<Double> getData() {
 	    return q;
 	}
+	
+	/**
+	* @return last generated random data point 
+	*/
 	public double getValue() {
 	    return cur_value;
 	}
