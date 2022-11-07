@@ -6,25 +6,25 @@ import java.util.concurrent.TimeUnit;
 public class Source extends Observable {
 		
 	
-	private Queue<Double> q;
+	private ArrayList<Double> q=new ArrayList<Double>(Collections.nCopies(10, 0.0));
 	private double cur_value;
 	
 	public void GenerateData(){
+		System.out.println("gen data init");
 	    Random rand = new Random(); //instance of random class
 		
-		
+		int i=0;
 		
 		while(true){
-			if (q.size()==10) {
-				q.remove();
-			}
 			cur_value=100*rand.nextDouble();
-			q.add(cur_value);
-		    
+			q.set(i%10,cur_value);
+			i++;
+
+//		    System.out.println(q);
            
 		    super.Notify();
 		    try {
-		    TimeUnit.SECONDS.sleep(20);
+		    Thread.sleep(500);
 		    }
 		    catch(Exception e) {
 		    	
@@ -32,7 +32,7 @@ public class Source extends Observable {
 	     }
 	 } 
 	
-	public Queue getData() {
+	public ArrayList<Double> getData() {
 	    return q;
 	}
 	public double getValue() {

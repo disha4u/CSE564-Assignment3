@@ -1,5 +1,5 @@
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Collections;
 import java.util.Queue;
 import java.awt.*;
@@ -8,17 +8,25 @@ import javax.swing.*;
 
 public class PlotPanel extends JPanel implements Observer {
 	ArrayList<Drawable> d=new ArrayList<Drawable>();
-	Queue<Double> q;
+	ArrayList<Double> q=new ArrayList<Double>(Collections.nCopies(10, 0.0));
 	ArrayList<Double> xcoor=new ArrayList<Double>();
 	ArrayList<Double> ycoor=new ArrayList<Double>();
 	double height;
 	double width;
 	Evaluator e= Evaluator.getInstance();
+	PlotPanel()
+	{
+		setPreferredSize(new Dimension(500,500));
+    	d.add(new BarPlot(new RectanglePoints(new LinePlot())));
+		d.add(new RectanglePoints(new LinePlot()));
+		d.add(new LinePlot());
 	
-	@Override
+	}
+	
 	public void Update(Observable o) {
 		// TODO Auto-generated method stub
 		this.q=((Source)o).getData();
+		//System.out.println(q);
 		if(q.size()==10) {
 			coordinateCalc();
 			for(Drawable k:d )
@@ -27,20 +35,30 @@ public class PlotPanel extends JPanel implements Observer {
 			}
 		}
 	}
-    public void drawGraphs() {
-    	
-    	d.add(new BarPlot(new RectanglePoints(new LinePlot())));
-		d.add(new RectanglePoints(new LinePlot()));
-		d.add(new LinePlot());
+//    public void drawGraphs() {
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		System.out.println("paint cim");
 		setSize(600,600);
 		
-    	JButton btn=new JButton();
+		coordinateCalc();
+		for(Drawable k:d )
+		{
+			k.setValues(xcoor,ycoor,width,height,0.0);
+		}
+//		while(q.size()<10) {
+//			
+//		}
+//		
+    	
     	for(Drawable k:d )
 		{
 			add(k);
 		}
-    	add(btn);
-    	setLayout(new GridLayout());
+    	System.out.print("Done with addd");
+    	//JButton btn=new JButton();
+    	//add(btn);
+    	setLayout(new GridLayout(3,1));
     	
     }
     public  void coordinateCalc()
@@ -52,8 +70,8 @@ public class PlotPanel extends JPanel implements Observer {
 			y[i]=i;
 		int cx=0;
 		//setPreferredSize(new Dimension(640, 480));
-		height=getSize().height/4;
-		width=getSize().width/4;
+		height=getSize().height/3;
+		width=getSize().width/3;
 		System.out.println("height and width"+height+" "+width);
 		for(Double x:q)
 		{

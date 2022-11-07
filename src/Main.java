@@ -1,4 +1,6 @@
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,70 +8,22 @@ import java.util.*;
 import javax.swing.*;
 public class Main extends JFrame implements ActionListener {
 
-	/**
-	Main()
+	
+	Main(JPanel pp, Source ds)
 	{
-		
+		setSize(600,600);
+//	    setLayout(new GridLayout(3,1));
+//		pp.setSize(new Dimension(getSize().height,getSize().width));
+		setLayout(new BorderLayout());
+		add(pp, BorderLayout.CENTER);
+		pack();
+//		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600,600);
-        double height;
-    	double width;
-        setLayout(new GridLayout(3,1));
-        System.out.println("Frame Set");
-        Queue<Double> q=new LinkedList<Double>();
-        while(q.size()<10) {
-        	double val=randomGenerator();
-        	q.add(val);
-        	if(q.size()==0)
-        		avg=val;
-        	else
-        	avg=(avg*(q.size()-1)/q.size())+val/q.size();
-        }
-        System.out.println("RandomGen");
-//    	double height=getSize().height;
-//		double width=getSize().width;
-        coordinateCalc(q);
-        System.out.println(xcoor);
-        System.out.println(ycoor);
-        System.out.println(ycoor);
-        System.out.println("avg "+avg);  
-        for(Drawable k :d)
-        { height=getSize().height;
-		 width=getSize().width;
-        	k.setValues(xcoor,ycoor,width,height,avg);
-        }
-        System.out.println("Coordinate Cal done");
-		for(Drawable k:d )
-		{
-			add(k);
-		}
-
-		System.out.println("Done with  adding");
-		 setVisible(true);
-			while(q.size()==10)
-		    {  coordinateCalc(q);
-				for(Drawable k :d)
-		        { 
-			    	 height=getSize().height;
-					 width=getSize().width;
-		        	k.setValues(xcoor,ycoor,width,height,avg);
-		        }
-		    q.remove();
-		    double val=randomGenerator();
-		    q.add(val);
-		    avg=(avg*(q.size()-1)/q.size())+val/q.size();
-		    System.out.println("avg "+avg);
-		    try
-		    {Thread.sleep(1000);
-		    }
-		    catch(Exception e)
-		    {
-		    	System.out.println("");
-		    }
-		    
-		    }
-        
+        add(pp);
+        setVisible(true);
+        ds.GenerateData();
 	}
+	/**
 	public void plotGraphs()
 	{
 //		System.out.println()
@@ -128,7 +82,7 @@ public class Main extends JFrame implements ActionListener {
 		Evaluator e=Evaluator.getInstance();
 		ds.addObservers(e);
 		
-		
+		Main m=new Main(pp,ds);
 		
 		
 	}
