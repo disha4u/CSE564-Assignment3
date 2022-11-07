@@ -5,19 +5,23 @@ import java.util.concurrent.TimeUnit;
 
 public class Source extends Observable {
 		
-	private Double[] y = {1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0};
-	private ArrayList<Double> q=new ArrayList<Double>(Collections.nCopies(10, 0.0));
-	private Double cury;
+	
+	private Queue<Double> q;
+	private double cur_value;
 	
 	public void GenerateData(){
 	    Random rand = new Random(); //instance of random class
-		int upperbound = 9;
 		
-		int i=0;
+		
+		
 		while(true){
-			q.set(i%10,100*rand.nextDouble());
-		    cury=y[rand.nextInt(upperbound)];
-            i++;
+			if (q.size()==10) {
+				q.remove();
+			}
+			cur_value=100*rand.nextDouble();
+			q.add(cur_value);
+		    
+           
 		    super.Notify();
 		    try {
 		    TimeUnit.SECONDS.sleep(20);
@@ -28,11 +32,12 @@ public class Source extends Observable {
 	     }
 	 } 
 	
-	public ArrayList<Double>  getData() {
+	public Queue getData() {
 	    return q;
 	}
-	
-	public Double getY() {
-	    return cury;
+	public double getValue() {
+	    return cur_value;
 	}
+	
+	
 }
