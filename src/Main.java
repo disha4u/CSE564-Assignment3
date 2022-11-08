@@ -1,4 +1,3 @@
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -8,7 +7,7 @@ import java.util.*;
 import javax.swing.*;
 public class Main extends JFrame implements ActionListener {
 
-	
+	private boolean state = false;
 	Main(JPanel pp, Source ds)
 	{
 		setSize(600,600);
@@ -19,11 +18,45 @@ public class Main extends JFrame implements ActionListener {
 	
 //		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		pack();
-		add(pp);
+//		pack();
+//		  add(pp);
         setVisible(true);
-        ds.GenerateData();
-	}
+        JButton btn=new JButton("Click Me");
+        add(pp);
+		pp.add(new JPanel().add(btn));
+       
+//      autoButton = new JButton("Auto");
+//      add(autoButton);
+      btn.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+        	System.out.println("Action performed");
+        	  state = true;
+//          	SwingUtilities.updateComponentTreeUI(this);
+
+//          	              
+        	  }
+      }
+      );
+//      if(true) {
+      System.out.println("State "+state);
+    	while(true) {
+    		if(state) {
+      		  System.out.println("Enter State");
+      		  ds.GenerateData();
+//      		  pp.repaint();
+      		  try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				
+			}
+      	  }
+    	}	
+    	}
+      //      }
+//        ds.GenerateData();
+//	}
 	/**
 	public void plotGraphs()
 	{
@@ -70,7 +103,6 @@ public class Main extends JFrame implements ActionListener {
 			    }
 			    
 			    }
-
 	}
 	
 	**/
@@ -93,4 +125,3 @@ public class Main extends JFrame implements ActionListener {
 		
 	}
 }
-
