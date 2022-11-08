@@ -18,7 +18,7 @@ public class Source extends Observable {
 	* generates random data points in an infinite cycle
 	*/
 	public void GenerateData(){
-		System.out.println("gen data init");
+		
 	    Random rand = new Random(); //instance of random class
 		
 		int i=0;
@@ -27,12 +27,9 @@ public class Source extends Observable {
 			cur_value=100*rand.nextDouble();
 			q.set(i%10,cur_value);
 			i++;
-
-//		    System.out.println(q);
-           
 		    super.Notify();
 		    try {
-		    Thread.sleep(500);
+		    Thread.sleep(1000);
 		    }
 		    catch(Exception e) {
 		    	

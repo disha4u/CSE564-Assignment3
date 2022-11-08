@@ -8,7 +8,7 @@ public class BarPlot extends DrawableDecorator {
 
 	BarPlot(Drawable drawable) {
 		super(drawable);
-//		System.out.println(" Bar PLot init");
+
 		this.setBackground(new Color(255,255,255));
 
 	}
@@ -26,8 +26,6 @@ public class BarPlot extends DrawableDecorator {
 		if (xcoor.size() == 10) {
 
 			for (int i = 0; i < xcoor.size(); i++) {
-//				 System.out.println("Drwa in  Barplot");
-				// graphics.draw(new Rectangle2D.Double(xcoor.get(i), ycoor.get(i), 10, 10));
 				Rectangle2D rect = new Rectangle2D.Double(xcoor.get(i), ycoor.get(i) + 5, 8, maxYcoor - ycoor.get(i));
 				graphics.draw(rect);
 				graphics.setPaint(Color.gray);
